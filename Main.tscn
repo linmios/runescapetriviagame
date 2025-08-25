@@ -19,3 +19,5 @@ script = ExtResource("1_glv2v")
 
 [node name="Control" parent="." instance=ExtResource("2_uu6xs")]
 layout_mode = 1
+
+[connection signal="questionstagecompleted" from="Control" to="." method="_on_questionstagecompleted"]

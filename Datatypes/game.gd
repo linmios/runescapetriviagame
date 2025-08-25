@@ -3,13 +3,14 @@ class_name Game
 ##questions in the game
 @export var questions : Array[Question]
 ##no question has been selected yet
-@export var currentquestion : int = -1
+@export var currentquestion : int = 0
+
+signal newquestion
 
 func nextquestion():
-	##skips to the next question and emits changed
+	##skips to the next question and emits newquestion
 	self.currentquestion += 1
 	
-	self.changed.emit()
 
 
 func getquestion() -> Question:

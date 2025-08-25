@@ -3,11 +3,15 @@ class_name QuestionScene
 
 @onready var questionlabel: Label = $VBoxContainer/PanelContainer/Label
 @onready var image: TextureRect = $VBoxContainer/PanelContainer2/MarginContainer/TextureRect
+
+##answers 
 @onready var label: Label = $VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/Label
 @onready var label1: Label = $VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/Label
 @onready var label2: Label = $VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer/Label
 @onready var label3: Label = $VBoxContainer/VBoxContainer/HBoxContainer2/PanelContainer4/MarginContainer/Label
 @onready var label4: Label = $VBoxContainer/VBoxContainer/HBoxContainer2/PanelContainer5/MarginContainer/Label
+
+##progressbar for the timer
 @onready var progress_bar: TextureProgressBar = $MarginContainer/ProgressBar
 
 @onready var timer: Timer = $Timer
@@ -17,7 +21,12 @@ class_name QuestionScene
 
 var question : Question
 
+##each click advances a stage. To gradually show different information
+var UIstage : int = 0
+
 var correctanswer : int
+
+signal questionstagecompleted
 
 func setquestion(newquestion : Question):
 	##sets the question that is currently active in the seen
@@ -30,10 +39,46 @@ func _process(delta: float) -> void:
 		progress_bar.value = 60-timer.time_left
 
 
-func setup():
+func newquestion():
+	
+	resetallinfo()
+	
+	newstage()
+	
+
+
+func newstage():
+	
+	if(self.question == null):
+		questionstagecompleted.emit()
+		return
+	
 	##sets up UI after new question
+	match self.UIstage:
+		0: ##show just question
+			setupquestion()
+		1: ##show answers
+			setupanswers()
+		2: ##show correct answer
+			showcorrect()
+		3: ##new question
+			UIstage = 0
+			questionstagecompleted.emit()
+			return
+			
+	
+	UIstage += 1
+
+func setupquestion():
+	
 	self.questionlabel.text  = "Question : " + str(self.question.thisquestion) + "\n" +   self.question.question
 	self.image.texture = self.question.image
+	
+	##reset color back to white
+	for x in self.labels:
+		x.self_modulate = Color.WHITE
+
+func setupanswers():
 	
 	##shuffles the answers, 0 being the correct answer
 	var order : Array[int] = [0, 1, 2, 3 ,4]
@@ -41,8 +86,22 @@ func setup():
 	
 	##sets the suffled answers to the labels in the UI
 	for x in order.size():
-		labels[order[x]].text = self.question.getquestion(x)
+		if(order[x] == 0):
+			##this is the correct question
+			self.correctanswer = x
+		labels[x].text = self.question.getquestion(order[x])
 	
 	##start the timer
 	timer.start(60.0)
+
+
+
+func showcorrect():
 	
+	self.labels[self.correctanswer].self_modulate = Color.GREEN
+	
+
+func resetallinfo():
+	
+	for x in labels:
+		x.text = ""
