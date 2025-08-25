@@ -20,24 +20,29 @@ var question : Question
 var correctanswer : int
 
 func setquestion(newquestion : Question):
-	
+	##sets the question that is currently active in the seen
 	if(newquestion != null):
 		self.question = newquestion
 
 func _process(delta: float) -> void:
 	if(not timer.is_stopped()):
+		##update the timer
 		progress_bar.value = 60-timer.time_left
 
 
 func setup():
+	##sets up UI after new question
 	self.questionlabel.text  = "Question : " + str(self.question.thisquestion) + "\n" +   self.question.question
 	self.image.texture = self.question.image
 	
+	##shuffles the answers, 0 being the correct answer
 	var order : Array[int] = [0, 1, 2, 3 ,4]
 	order.shuffle()
 	
+	##sets the suffled answers to the labels in the UI
 	for x in order.size():
 		labels[order[x]].text = self.question.getquestion(x)
 	
+	##start the timer
 	timer.start(60.0)
 	

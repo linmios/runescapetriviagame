@@ -5,6 +5,7 @@ var game : Game = load("res://gamedata/testgame.tres")
 
 func _ready() -> void:
 	await get_tree().physics_frame
+	##
 	game.connect("changed", updatescene)
 
 func _input(event: InputEvent) -> void:
