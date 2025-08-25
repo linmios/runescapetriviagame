@@ -1,0 +1,91 @@
+[gd_resource type="Resource" script_class="Game" load_steps=14 format=3 uid="uid://dqk358e1rgil"]
+
+[ext_resource type="Script" uid="uid://dlso2duc5elhy" path="res://Datatypes/question.gd" id="1_jemgr"]
+[ext_resource type="Texture2D" uid="uid://co4cc6jmvgib5" path="res://icon.svg" id="2_luvft"]
+[ext_resource type="Script" uid="uid://bs81n0hot0xr5" path="res://Datatypes/game.gd" id="2_palh7"]
+
+[sub_resource type="Resource" id="Resource_palh7"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+image = ExtResource("2_luvft")
+correctanswer = "Correct"
+decoyanswers = Array[String](["Wrong", "Wrong", "Wrong", "Wrong"])
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_luvft"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+image = ExtResource("2_luvft")
+correctanswer = "Correct"
+decoyanswers = Array[String](["Wrong", "Wrong", "Wrong", "Wrong"])
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_heq1x"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+image = ExtResource("2_luvft")
+correctanswer = "Correct"
+decoyanswers = Array[String](["Wrong", "Wrong", "Wrong", "Wrong"])
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_bvnma"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+image = ExtResource("2_luvft")
+correctanswer = "Correct"
+decoyanswers = Array[String](["Wrong", "Wrong", "Wrong", "Wrong"])
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_qmc8p"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+image = ExtResource("2_luvft")
+correctanswer = "Correct"
+decoyanswers = Array[String](["Wrong", "Wrong", "Wrong", "Wrong"])
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_g3hdh"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+image = ExtResource("2_luvft")
+correctanswer = "Correct"
+decoyanswers = Array[String](["Wrong", "Wrong", "Wrong", "Wrong"])
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_vp2j1"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+image = ExtResource("2_luvft")
+correctanswer = "Correct"
+decoyanswers = Array[String](["Wrong", "Wrong", "Wrong", "Wrong"])
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_f5sgt"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+image = ExtResource("2_luvft")
+correctanswer = "Correct"
+decoyanswers = Array[String](["Wrong", "Wrong", "Wrong", "Wrong"])
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_fwe6t"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+image = ExtResource("2_luvft")
+correctanswer = "Correct"
+decoyanswers = Array[String](["Wrong", "Wrong", "Wrong", "Wrong"])
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_w57e4"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+image = ExtResource("2_luvft")
+correctanswer = "Correct"
+decoyanswers = Array[String](["Wrong", "Wrong", "Wrong", "Wrong"])
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[resource]
+script = ExtResource("2_palh7")
+questions = Array[ExtResource("1_jemgr")]([SubResource("Resource_palh7"), SubResource("Resource_luvft"), SubResource("Resource_heq1x"), SubResource("Resource_bvnma"), SubResource("Resource_qmc8p"), SubResource("Resource_g3hdh"), SubResource("Resource_vp2j1"), SubResource("Resource_f5sgt"), SubResource("Resource_fwe6t"), SubResource("Resource_w57e4")])
+currentquestion = -1
+metadata/_custom_type_script = "uid://bs81n0hot0xr5"
