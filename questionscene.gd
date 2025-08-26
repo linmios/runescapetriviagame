@@ -71,20 +71,25 @@ func newstage():
 
 func setupquestion():
 	
-	self.questionlabel.text  = "Question : " + str(self.question.thisquestion) + "\n" +   self.question.question
+	self.questionlabel.text  = "Question : " + str(self.question.thisquestion+1) + "\n" +   self.question.question
 	self.image.texture = self.question.image
 	
-	var size : int = 100
-	
-	while (questionlabel.size.x > 499 or questionlabel.size.y > 122):
-		self.questionlabel.add_theme_font_size_override("font_size", size)
-		size -= 1
-		if(size < 20):
-			break
+	expandtext(self.questionlabel)
 	
 	##reset color back to white
 	for x in self.labels:
 		x.self_modulate = Color.WHITE
+
+func expandtext(label : Label): 
+	
+	var size : int = 100
+	label.add_theme_font_size_override("font_size", size)
+	##rescaling text, doesnt work
+	while (questionlabel.size.x > 499 or questionlabel.size.y > 122):
+		label.add_theme_font_size_override("font_size", size)
+		size -= 1
+		if(size < 20):
+			break
 
 
 func setupanswers():
@@ -101,6 +106,7 @@ func setupanswers():
 			##this is the correct question
 			self.correctanswer = x
 		labels[x].text = getoptionfromnumber(x) + self.question.getquestion(order[x])
+		expandtext(labels[x])
 	
 	##start the timer
 	timer.start(60.0)
