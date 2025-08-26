@@ -1,7 +1,7 @@
 extends Control
 class_name QuestionScene
 
-@onready var questionlabel: Label = $VBoxContainer/PanelContainer/Label
+@onready var questionlabel: Label = $VBoxContainer/PanelContainer/MarginContainer/Label
 @onready var image: TextureRect = $VBoxContainer/PanelContainer2/MarginContainer/TextureRect
 
 ##answers 
@@ -74,9 +74,18 @@ func setupquestion():
 	self.questionlabel.text  = "Question : " + str(self.question.thisquestion) + "\n" +   self.question.question
 	self.image.texture = self.question.image
 	
+	var size : int = 100
+	
+	while (questionlabel.size.x > 499 or questionlabel.size.y > 122):
+		self.questionlabel.add_theme_font_size_override("font_size", size)
+		size -= 1
+		if(size < 20):
+			break
+	
 	##reset color back to white
 	for x in self.labels:
 		x.self_modulate = Color.WHITE
+
 
 func setupanswers():
 	
@@ -86,18 +95,36 @@ func setupanswers():
 	
 	##sets the suffled answers to the labels in the UI
 	for x in order.size():
+		
+		
 		if(order[x] == 0):
 			##this is the correct question
 			self.correctanswer = x
-		labels[x].text = self.question.getquestion(order[x])
+		labels[x].text = getoptionfromnumber(x) + self.question.getquestion(order[x])
 	
 	##start the timer
 	timer.start(60.0)
 
+func getoptionfromnumber(num : int) -> String:
+	
+	match num:
+		0:
+			return " A : "
+		1:
+			return " B : "
+		2:
+			return " C : "
+		3:
+			return " D : "
+		4:
+			return " E : "
+	
+	return " A : "
 
 
 func showcorrect():
 	
+	print("Question : " + str(self.question.thisquestion) + ", Correct : " + str(self.correctanswer))
 	self.labels[self.correctanswer].self_modulate = Color.GREEN
 	
 

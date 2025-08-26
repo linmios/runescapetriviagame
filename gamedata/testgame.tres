@@ -14,7 +14,7 @@ metadata/_custom_type_script = "uid://dlso2duc5elhy"
 
 [sub_resource type="Resource" id="Resource_luvft"]
 script = ExtResource("1_jemgr")
-question = "Which answer is Correct?"
+question = "Which answer is Correct? This is an even longer question to check the font size"
 image = ExtResource("2_luvft")
 correctanswer = "Correct"
 decoyanswers = Array[String](["Wrong", "Wrong", "Wrong", "Wrong"])

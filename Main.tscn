@@ -6,6 +6,10 @@
 
 [sub_resource type="Theme" id="Theme_uu6xs"]
 default_font = ExtResource("1_r0du0")
+Label/colors/font_color = Color(1, 1, 0, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 6
+PanelContainer/styles/panel = null
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -16,6 +20,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_uu6xs")
 script = ExtResource("1_glv2v")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Control" parent="." instance=ExtResource("2_uu6xs")]
 layout_mode = 1

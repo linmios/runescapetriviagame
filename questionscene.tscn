@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1fmfftet4j76"]
+[gd_scene load_steps=5 format=3 uid="uid://b1fmfftet4j76"]
 
 [ext_resource type="Script" uid="uid://bqpnx6s3fvsqv" path="res://questionscene.gd" id="1_k7lh0"]
 [ext_resource type="Texture2D" uid="uid://c4u7v53mrsevs" path="res://shaq.png" id="2_n7cm6"]
 [ext_resource type="Texture2D" uid="uid://co4cc6jmvgib5" path="res://icon.svg" id="2_r1fm6"]
+[ext_resource type="Texture2D" uid="uid://cg747nqovt6ao" path="res://chatbox.png" id="4_e2mst"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -61,10 +62,26 @@ texture = ExtResource("2_r1fm6")
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="VBoxContainer/PanelContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
+texture = ExtResource("4_e2mst")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(499, 122)
+layout_mode = 2
+size_flags_vertical = 1
 text = "Question 0
 Who is Blablabla"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -80,35 +97,47 @@ alignment = 1
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("4_e2mst")
+
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 60
 text = "Answer 1"
+horizontal_alignment = 1
 
 [node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+texture = ExtResource("4_e2mst")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer2"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 60
 text = "Answer 1"
+horizontal_alignment = 1
 
 [node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3"]
+layout_mode = 2
+texture = ExtResource("4_e2mst")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3/MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 60
 text = "Answer 1"
+horizontal_alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -119,24 +148,32 @@ alignment = 1
 [node name="PanelContainer4" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer2/PanelContainer4"]
+layout_mode = 2
+texture = ExtResource("4_e2mst")
+
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/PanelContainer4"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2/PanelContainer4/MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 60
 text = "Answer 1"
+horizontal_alignment = 1
 
 [node name="PanelContainer5" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer2/PanelContainer5"]
+layout_mode = 2
+texture = ExtResource("4_e2mst")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/PanelContainer5"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2/PanelContainer5/MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 60
 text = "Answer 1"
+horizontal_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 60.0
