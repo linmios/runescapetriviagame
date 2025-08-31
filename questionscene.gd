@@ -21,12 +21,15 @@ class_name QuestionScene
 
 var question : Question
 
+var currentorder : Array[int]
+
 ##each click advances a stage. To gradually show different information
 var UIstage : int = 0
 
 var correctanswer : int
 
 signal questionstagecompleted
+signal backaquestion
 
 func setquestion(newquestion : Question):
 	##sets the question that is currently active in the seen
@@ -46,6 +49,22 @@ func newquestion():
 	newstage()
 	
 
+
+func goback():
+	
+	UIstage -= 1
+	
+	if(UIstage < 0 or self.question.thisquestion == 0):
+		newstage()
+		setupquestion()
+	else:
+		UIstage = 0
+		backaquestion.emit()
+		return
+	
+	
+	
+	
 
 func newstage():
 	
@@ -71,8 +90,8 @@ func newstage():
 
 func setupquestion():
 	
-	self.questionlabel.text  = "Question : " + str(self.question.thisquestion+1) + "\n" +   self.question.question
-	self.image.texture = self.question.image
+	self.questionlabel.text = self.question.getdiffasString() + "\nQuestion : " + str(self.question.thisquestion+1) + "\n" +   self.question.question
+	self.image.texture = self.question.primaryimage
 	
 	expandtext(self.questionlabel)
 	
@@ -82,10 +101,10 @@ func setupquestion():
 
 func expandtext(label : Label): 
 	
-	var size : int = 100
+	var size : int = 60
 	label.add_theme_font_size_override("font_size", size)
-	##rescaling text, doesnt work
-	while (questionlabel.size.x > 499 or questionlabel.size.y > 122):
+	
+	while (label.size.x > 499 or label.size.y > 122):
 		label.add_theme_font_size_override("font_size", size)
 		size -= 1
 		if(size < 20):
@@ -97,7 +116,7 @@ func setupanswers():
 	##shuffles the answers, 0 being the correct answer
 	var order : Array[int] = [0, 1, 2, 3 ,4]
 	order.shuffle()
-	
+	self.currentorder = order
 	##sets the suffled answers to the labels in the UI
 	for x in order.size():
 		
@@ -132,6 +151,13 @@ func showcorrect():
 	
 	print("Question : " + str(self.question.thisquestion) + ", Correct : " + str(self.correctanswer))
 	self.labels[self.correctanswer].self_modulate = Color.GREEN
+	self.image.texture = self.question.getreavealimage()
+	for x in self.currentorder.size():
+		if(self.currentorder[x] == 0):
+			##this is the correct question
+			self.correctanswer = x
+		labels[x].text = getoptionfromnumber(x) + self.question.getrevealanswer(self.currentorder[x])
+		expandtext(labels[x])
 	
 
 func resetallinfo():

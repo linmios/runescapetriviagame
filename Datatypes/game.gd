@@ -5,15 +5,20 @@ class_name Game
 ##no question has been selected yet
 @export var currentquestion : int = -1
 
+
+
 signal newquestion
 signal finished
 
-
 func nextquestion():
-	##skips to the next question and emits newquestion
+	##skips to the next question
 	self.currentquestion += 1
-	
 
+func backquestion():
+	##skips to the previous question
+	self.currentquestion -= 1
+	if(self.currentquestion < 0):
+		self.currentquestion = 0
 
 func getquestion() -> Question:
 	##returns question
@@ -25,3 +30,23 @@ func getquestion() -> Question:
 	## adds the number which the question is to the question so it knows which index it is in
 	self.questions[currentquestion].thisquestion = self.currentquestion
 	return self.questions[currentquestion]
+
+func savegame() -> Array[Dictionary]:
+	
+	var returnarray : Array[Dictionary]
+	
+	for x in self.questions:
+		returnarray.append(x.saveself())
+	
+	
+	return returnarray
+
+func loadgame(data : Array[Dictionary]):
+	
+	self.questions = []
+	
+	for x in data.size():
+		var loadedquestion = Question.new()
+		loadedquestion.loadquestion(data[x])
+		self.questions.append(loadedquestion)
+	
