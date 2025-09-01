@@ -4,6 +4,9 @@ class_name QuestionScene
 @onready var questionlabel: Label = $VBoxContainer/PanelContainer/MarginContainer/Label
 @onready var image: TextureRect = $VBoxContainer/PanelContainer2/MarginContainer/TextureRect
 
+@onready var questioncounter: Label = $VBoxContainer/Label2
+
+
 ##answers 
 @onready var label: Label = $VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/Label
 @onready var label1: Label = $VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/Label
@@ -23,13 +26,14 @@ var question : Question
 
 var currentorder : Array[int]
 
+var game : Game 
+
 ##each click advances a stage. To gradually show different information
 var UIstage : int = 0
 
 var correctanswer : int
 
-signal questionstagecompleted
-signal backaquestion
+signal quit
 
 func setquestion(newquestion : Question):
 	##sets the question that is currently active in the seen
@@ -49,6 +53,23 @@ func newquestion():
 	newstage()
 	
 
+func _input(event: InputEvent) -> void:
+	if(event is InputEventKey):
+		if(event.keycode == KEY_SPACE and event.is_pressed()):
+			self.newstage()
+		elif(event.keycode == KEY_LEFT and event.is_pressed()):
+			self.goback()
+
+func setgame(game : Game):
+	self.game = game
+	
+	questionlabel.text = ""
+	
+	updatescene()
+	resetallinfo()
+	
+	
+
 
 func goback():
 	
@@ -59,7 +80,7 @@ func goback():
 		setupquestion()
 	else:
 		UIstage = 0
-		backaquestion.emit()
+		goback()
 		return
 	
 	
@@ -69,7 +90,7 @@ func goback():
 func newstage():
 	
 	if(self.question == null):
-		questionstagecompleted.emit()
+		_on_questionstagecompleted()
 		return
 	
 	##sets up UI after new question
@@ -82,11 +103,33 @@ func newstage():
 			showcorrect()
 		3: ##new question
 			UIstage = 0
-			questionstagecompleted.emit()
+			_on_questionstagecompleted()
 			return
 			
 	
 	UIstage += 1
+
+
+func updatescene():
+	
+	self.setquestion(self.game.getquestion())
+	self.newquestion()
+	
+	if(self.game.currentquestion != -1):
+		questioncounter.text = "Question " + str(self.game.currentquestion) + "/" + str(self.game.questions.size())
+	else:
+		questioncounter.text = ""
+
+
+func _on_questionstagecompleted() -> void:
+	self.game.nextquestion()
+	updatescene()
+
+
+func _on_backaquestion() -> void:
+	self.game.backquestion()
+	updatescene()
+
 
 func setupquestion():
 	
@@ -164,3 +207,7 @@ func resetallinfo():
 	
 	for x in labels:
 		x.text = ""
+
+
+func _on_quit_pressed() -> void:
+	quit.emit()

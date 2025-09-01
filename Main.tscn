@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci1l2bi1bnip8"]
+[gd_scene load_steps=5 format=3 uid="uid://ci1l2bi1bnip8"]
 
 [ext_resource type="Script" uid="uid://w1bp8erf3jro" path="res://main.gd" id="1_glv2v"]
 [ext_resource type="PackedScene" uid="uid://b1fmfftet4j76" path="res://questionscene.tscn" id="2_uu6xs"]
-[ext_resource type="PackedScene" uid="uid://7yaeg2iop45u" path="res://rules.tscn" id="4_cm0pq"]
 [ext_resource type="Texture2D" uid="uid://cg747nqovt6ao" path="res://chatbox.png" id="4_fos0i"]
 
 [sub_resource type="Theme" id="Theme_uu6xs"]
@@ -31,10 +30,6 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Control" parent="." instance=ExtResource("2_uu6xs")]
-visible = false
-layout_mode = 1
-
-[node name="rules" parent="." instance=ExtResource("4_cm0pq")]
 visible = false
 layout_mode = 1
 
@@ -136,8 +131,6 @@ text = "Quit"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="backaquestion" from="Control" to="." method="_on_backaquestion"]
-[connection signal="questionstagecompleted" from="Control" to="." method="_on_questionstagecompleted"]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_loadandplay_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_makenew_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_loadandedit_pressed"]

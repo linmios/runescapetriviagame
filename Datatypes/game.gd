@@ -50,3 +50,18 @@ func loadgame(data : Array[Dictionary]):
 		loadedquestion.loadquestion(data[x])
 		self.questions.append(loadedquestion)
 	
+
+func loadfrompath(loadpath : String):
+	
+	var file = FileAccess.open(loadpath, FileAccess.READ) 
+	
+	var gamedata : Array[Dictionary]
+	
+	if(file.file_exists(loadpath)):
+		while not file.eof_reached():
+			var dict = JSON.parse_string(file.get_line())
+			gamedata.append(dict)
+		file.close()
+	
+	
+	self.loadgame(gamedata)

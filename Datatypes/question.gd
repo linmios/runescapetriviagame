@@ -28,8 +28,7 @@ func getreavealimage() -> Texture2D:
 	else:
 		return self.primaryimage
 	
-	pass
-
+	
 func getdiffasString() -> String:
 	return Difficulties.keys()[self.difficulty]
 
@@ -49,8 +48,6 @@ func getrevealanswer(index : int) -> String:
 	else:
 		return self.decoyanswers[index - 1].getreveal()
 	
-	
-	return "Error"
 
 func saveself() -> Dictionary:
 	var savedict : Dictionary = {

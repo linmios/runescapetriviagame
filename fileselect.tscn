@@ -1,0 +1,239 @@
+[gd_scene load_steps=26 format=3 uid="uid://c75ufsr1r1xih"]
+
+[ext_resource type="Script" uid="uid://dvbqdokxq3i3y" path="res://fileselect.gd" id="1_phets"]
+[ext_resource type="Texture2D" uid="uid://cg747nqovt6ao" path="res://chatbox.png" id="2_8kaya"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i3jed"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8kaya"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vwl8l"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uimfp"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kust6"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vow5b"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ejw31"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofpuh"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gloep"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d38w8"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nc5a7"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u4utf"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6wiii"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q8avt"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_easmj"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7f0w5"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_novbg"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hlpv6"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hrjsd"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_27b1w"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qc6dm"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2k8y0"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_conf7"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = ExtResource("2_8kaya")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_phets")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer"]
+custom_minimum_size = Vector2(700, 500)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+theme_override_styles/panel = SubResource("StyleBoxTexture_i3jed")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxTexture_8kaya")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_vwl8l")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_uimfp")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_kust6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_vow5b")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_ejw31")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ofpuh")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_gloep")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_d38w8")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_nc5a7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_u4utf")
+text = "Select"
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxTexture_6wiii")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_q8avt")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_easmj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_7f0w5")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_novbg")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_hlpv6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hrjsd")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_27b1w")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qc6dm")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_2k8y0")
+theme_override_styles/normal = SubResource("StyleBoxTexture_conf7")
+text = "Cancel"
+
+[connection signal="item_selected" from="VBoxContainer/ItemList" to="." method="_on_file_selected"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_select_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button2" to="." method="_on_cancel_pressed"]

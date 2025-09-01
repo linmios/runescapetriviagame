@@ -171,22 +171,6 @@ func _on_save_pressed() -> void:
 	file.close()
 	
 
-func loadgame(loadpath : String):
-	
-	var file = FileAccess.open(loadpath, FileAccess.WRITE) 
-	
-	var gamedata : Array[Dictionary]
-	
-	if(file.file_exists(loadpath)):
-		while not file.eof_reached():
-			gamedata.append(JSON.parse_string(file.get_line()))
-			
-			
-			file.close()
-	
-	self.game.loadgame(gamedata)
-	
-
 
 func _on_exit_pressed() -> void:
 	self.queue_free()
