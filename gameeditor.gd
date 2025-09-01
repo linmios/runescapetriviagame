@@ -44,6 +44,19 @@ func setupui(newgame : Game):
 	questionlist.item_selected.emit(0)
 	questionlist.select(0)
 
+func loadfile(filepath):
+	
+	self.game.loadfrompath(filepath)
+	
+	updatequestionlist()
+	loadquestion(0)
+	var foldername : String = filepath
+	foldername = foldername.erase(0, 19)
+	var ending : int = foldername.find(".bin")
+	foldername = foldername.erase(ending-9, 13)
+	$VBoxContainer/HBoxContainer/VBoxContainer/TextEdit.text = foldername
+	
+
 
 
 func loadquestion(index : int):

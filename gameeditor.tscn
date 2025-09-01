@@ -53,9 +53,10 @@ theme_override_font_sizes/font_size = 25
 text = "Enter Save Folder Name"
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(35, 43.405)
+custom_minimum_size = Vector2(35, 51.475)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
+placeholder_text = "Enter folder name"
 emoji_menu_enabled = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]

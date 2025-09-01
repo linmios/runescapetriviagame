@@ -58,7 +58,7 @@ func loadfrompath(loadpath : String):
 	var gamedata : Array[Dictionary]
 	
 	if(file.file_exists(loadpath)):
-		while not file.eof_reached():
+		while file.get_position() < file.get_length():
 			var dict = JSON.parse_string(file.get_line())
 			gamedata.append(dict)
 		file.close()

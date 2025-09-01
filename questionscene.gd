@@ -54,7 +54,7 @@ func newquestion():
 	
 
 func _input(event: InputEvent) -> void:
-	if(event is InputEventKey):
+	if(event is InputEventKey and self.visible == true):
 		if(event.keycode == KEY_SPACE and event.is_pressed()):
 			self.newstage()
 		elif(event.keycode == KEY_LEFT and event.is_pressed()):
@@ -116,7 +116,7 @@ func updatescene():
 	self.newquestion()
 	
 	if(self.game.currentquestion != -1):
-		questioncounter.text = "Question " + str(self.game.currentquestion) + "/" + str(self.game.questions.size())
+		questioncounter.text = "Question " + str(self.game.currentquestion+1) + "/" + str(self.game.questions.size())
 	else:
 		questioncounter.text = ""
 

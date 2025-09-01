@@ -21,7 +21,17 @@ func _on_exit_pressed() -> void:
 
 
 func _on_loadandedit_pressed() -> void:
-	pass # Replace with function body.
+	var selectfile = gameselectscene.instantiate()
+	add_child(selectfile)
+	selectfile.selected.connect(setupeditor)
+
+func setupeditor(filepath : String):
+	
+	var editscene = load("res://gameeditor.tscn")
+	var editgame = editscene.instantiate()
+	add_child(editgame)
+	editgame.loadfile(filepath)
+
 
 
 func _on_makenew_pressed() -> void:
