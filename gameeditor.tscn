@@ -95,6 +95,8 @@ text = "Primary Image"
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -112,6 +114,8 @@ text = "Reveal Image (Optional)"
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
@@ -324,6 +328,14 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 25
 placeholder_text = "Add Decoy Reveal Answer Here"
 
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 1
+size = Vector2i(800, 640)
+ok_button_text = "Open"
+file_mode = 0
+access = 1
+
 [connection signal="item_selected" from="VBoxContainer/HBoxContainer/VBoxContainer/ItemList" to="." method="_on_questionlistitem_selected"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Button2" to="." method="_on_save_pressed"]
@@ -340,3 +352,5 @@ placeholder_text = "Add Decoy Reveal Answer Here"
 [connection signal="text_changed" from="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer4/HBoxContainer/TextEdit2" to="." method="questionedited"]
 [connection signal="text_changed" from="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer5/HBoxContainer/TextEdit" to="." method="questionedited"]
 [connection signal="text_changed" from="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer5/HBoxContainer/TextEdit2" to="." method="questionedited"]
+[connection signal="confirmed" from="FileDialog" to="." method="_on_file_dialog_confirmed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

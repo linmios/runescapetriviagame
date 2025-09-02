@@ -17,7 +17,7 @@ func _ready() -> void:
 		var file_name = dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
-				filepaths.append("user://Triviagames/" + file_name + "/GameData.bin")
+				filepaths.append("user://Triviagames/" + file_name)
 				filelist.add_item(file_name)
 				print("Found directory: " + file_name)
 			file_name = dir.get_next()

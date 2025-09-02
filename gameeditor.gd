@@ -25,6 +25,10 @@ var currentquestion : Question
 @onready var decoy4answer: TextEdit = $VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer5/HBoxContainer/TextEdit
 @onready var decoy4reveal: TextEdit = $VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer5/HBoxContainer/TextEdit2
 
+@onready var file_dialog: FileDialog = $FileDialog
+var selectedfile : String = ""
+var addtoprimary : bool = true
+
 func _ready() -> void:
 	##for DEBUG
 	setupui(self.game)
@@ -50,10 +54,9 @@ func loadfile(filepath):
 	
 	updatequestionlist()
 	loadquestion(0)
+	questionlist.select(0, true)
 	var foldername : String = filepath
 	foldername = foldername.erase(0, 19)
-	var ending : int = foldername.find(".bin")
-	foldername = foldername.erase(ending-9, 13)
 	$VBoxContainer/HBoxContainer/VBoxContainer/TextEdit.text = foldername
 	
 
@@ -139,51 +142,56 @@ func updatequestionlist():
 	
 
 
+
 func _on_selectmainimage_pressed() -> void:
-	pass # Replace with function body.
+	file_dialog.invalidate()
+	addtoprimary= true
+	file_dialog.visible = true
 
 
 func _on_selectrevealimage_pressed() -> void:
-	pass # Replace with function body.
+	file_dialog.invalidate()
+	addtoprimary = false
+	file_dialog.visible = true
 
 
 func _on_save_pressed() -> void:
 	
-	
-	savebutton.add_theme_color_override("font_color", Color.WHITE)
-	
-	savecurrentquestion()
-	
 	var foldername : String = $VBoxContainer/HBoxContainer/VBoxContainer/TextEdit.text
-	
-	if(foldername == ""):
-		return
-	
-	##get array of dictionary from game.save
-	
-	var data : Array[Dictionary] = self.game.savegame()
-	
-	var savepath : String =  "user://Triviagames/" + foldername + "/"
-	
-	
-	
-	
-	
-	var file = FileAccess.open(savepath+"GameData.bin", FileAccess.WRITE)
-	
-	if(file == null):
-		DirAccess.make_dir_absolute(savepath)
-		file = FileAccess.open(savepath+"GameData.bin", FileAccess.WRITE)
-	
-	var jstr
-	
-	for x in data:
-		jstr = JSON.stringify(x)
-		file.store_line(jstr)
-	
-	file.close()
-	
+	if(foldername != ""):
+		savebutton.add_theme_color_override("font_color", Color.WHITE)
+		
+		savecurrentquestion()
+		
+		##get array of dictionary from game.save
+		
+		self.game.savegame(foldername)
+		$VBoxContainer/HBoxContainer/VBoxContainer/TextEdit.placeholder_text = "Enter folder name"
+	else:
+		$VBoxContainer/HBoxContainer/VBoxContainer/TextEdit.placeholder_text = "Folder Name is Required"
+
 
 
 func _on_exit_pressed() -> void:
 	self.queue_free()
+
+
+func _on_file_dialog_confirmed() -> void:
+	
+	#self.selectedfile = ProjectSettings.globalize_path(self.selectedfile)
+	
+	var image = Image.new()
+	image.load(self.selectedfile)
+	if(image != null):
+		var texture = ImageTexture.new()
+		#texture.create_from_image(image)
+		texture.set_image(image)
+		
+		if(self.addtoprimary):
+			self.primaryimage.texture = texture
+		else:
+			self.revealimage.texture = texture
+
+
+func _on_file_dialog_file_selected(path: String) -> void:
+	self.selectedfile = path
