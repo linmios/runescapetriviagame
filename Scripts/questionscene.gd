@@ -1,6 +1,9 @@
 extends Control
 class_name QuestionScene
 
+
+##UI setup
+#region
 @onready var questionlabel: Label = $VBoxContainer/PanelContainer/MarginContainer/Label
 @onready var image: TextureRect = $VBoxContainer/PanelContainer2/MarginContainer/TextureRect
 
@@ -19,11 +22,15 @@ class_name QuestionScene
 
 @onready var timer: Timer = $Timer
 
-
 @onready var labels : Array[Label] = [label, label1, label2, label3, label4]
 
+#endregion
+
+##the current question that is being displayed
 var question : Question
 
+##the current order of answers, 0 being the correct answer and 1->4 being decoy answers
+##used as reference later to retrieve correct answer and reveal it
 var currentorder : Array[int]
 
 var game : Game 
@@ -35,17 +42,18 @@ var correctanswer : int
 
 signal quit
 
-func setquestion(newquestion : Question):
+func setquestion(addedquestion : Question) -> void:
 	##sets the question that is currently active in the seen
-	if(newquestion != null):
-		self.question = newquestion
+	if(addedquestion != null):
+		self.question = addedquestion
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if(not timer.is_stopped()):
 		##update the timer
 		progress_bar.value = 60-timer.time_left
 
 
+##sets up a new question
 func newquestion():
 	
 	resetallinfo()
@@ -54,14 +62,19 @@ func newquestion():
 	
 
 func _input(event: InputEvent) -> void:
-	if(event is InputEventKey and self.visible == true):
+	if(event is InputEventKey and self.visible): 
+		##if the input is a keyboard press
+		## and
+		##if the question scene window is visible, I.E in use, we react to the input
 		if(event.keycode == KEY_SPACE and event.is_pressed()):
 			self.newstage()
 		elif(event.keycode == KEY_LEFT and event.is_pressed()):
 			self.goback()
 
-func setgame(game : Game):
-	self.game = game
+func setgame(newgame : Game):
+	
+	##we setup UI and internal information for a new game
+	self.game = newgame
 	
 	questionlabel.text = ""
 	
@@ -71,11 +84,11 @@ func setgame(game : Game):
 	
 
 
-func goback():
-	
+func goback() -> void:
+	##we go back to the first stage, 
 	UIstage -= 1
-	
-	if(UIstage < 0 or self.question.thisquestion == 0):
+	#if we are at the first stage we setup the previous question
+	if(UIstage < 0 or self.question.questionindex == 0):
 		newstage()
 		setupquestion()
 	else:
@@ -87,8 +100,8 @@ func goback():
 	
 	
 
-func newstage():
-	
+func newstage() -> void:
+	##we go to the next stage of the question
 	if(self.question == null):
 		_on_questionstagecompleted()
 		return
@@ -111,7 +124,7 @@ func newstage():
 
 
 func updatescene():
-	
+	##update the scene 
 	self.setquestion(self.game.getquestion())
 	self.newquestion()
 	
@@ -126,14 +139,9 @@ func _on_questionstagecompleted() -> void:
 	updatescene()
 
 
-func _on_backaquestion() -> void:
-	self.game.backquestion()
-	updatescene()
-
-
 func setupquestion():
 	
-	self.questionlabel.text = self.question.getdiffasString() + "\nQuestion : " + str(self.question.thisquestion+1) + "\n" +   self.question.question
+	self.questionlabel.text = self.question.getdiffasString() + "\nQuestion : " + str(self.question.questionindex+1) + "\n" +   self.question.question
 	self.image.texture = self.question.primaryimage
 	
 	expandtext(self.questionlabel)
@@ -142,15 +150,15 @@ func setupquestion():
 	for x in self.labels:
 		x.self_modulate = Color.WHITE
 
-func expandtext(label : Label): 
+func expandtext(textlabel : Label): 
 	
-	var size : int = 60
-	label.add_theme_font_size_override("font_size", size)
+	var fontsize : int = 60
+	textlabel.add_theme_font_size_override("font_size", fontsize)
 	
-	while (label.size.x > 499 or label.size.y > 122):
-		label.add_theme_font_size_override("font_size", size)
-		size -= 1
-		if(size < 20):
+	while (textlabel.size.x > 499 or textlabel.size.y > 122):
+		textlabel.add_theme_font_size_override("font_size", fontsize)
+		fontsize -= 1
+		if(fontsize < 20):
 			break
 
 
@@ -192,7 +200,7 @@ func getoptionfromnumber(num : int) -> String:
 
 func showcorrect():
 	
-	print("Question : " + str(self.question.thisquestion) + ", Correct : " + str(self.correctanswer))
+	print("Question : " + str(self.question.questionindex) + ", Correct : " + str(self.correctanswer))
 	self.labels[self.correctanswer].self_modulate = Color.GREEN
 	self.image.texture = self.question.getreavealimage()
 	for x in self.currentorder.size():

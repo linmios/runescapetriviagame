@@ -2,27 +2,18 @@ extends Control
 
 
 @onready var question_scene: QuestionScene = $Control 
-@onready var gameselectscene = load("res://Scenes/fileselect.tscn")
+@onready var gameselectscene  : PackedScene = load("res://Scenes/fileselect.tscn")
 
 @onready var menubuttons: VBoxContainer = $VBoxContainer
-
-
-func gamefinished():
-	
-	question_scene.queue_free()
 	
 
 func _ready() -> void:
 	question_scene.quit.connect(gamequit)
 	
 	
-	var dir = DirAccess.open("user://")
+	var dir : DirAccess = DirAccess.open("user://")
 	if(not dir.dir_exists("Images")):
 		dir.make_dir("Images")
-	
-	
-	
-	
 	
 
 func _on_exit_pressed() -> void:
@@ -30,22 +21,22 @@ func _on_exit_pressed() -> void:
 
 
 func _on_loadandedit_pressed() -> void:
-	var selectfile = gameselectscene.instantiate()
+	var selectfile : Node = gameselectscene.instantiate()
 	add_child(selectfile)
 	selectfile.selected.connect(setupeditor)
 
 func setupeditor(filepath : String):
 	
-	var editscene = load("res://Scenes/gameeditor.tscn")
-	var editgame = editscene.instantiate()
+	var editscene : PackedScene = load("res://Scenes/gameeditor.tscn")
+	var editgame : Node = editscene.instantiate()
 	add_child(editgame)
 	editgame.loadfile(filepath)
 
 
 
 func _on_makenew_pressed() -> void:
-	var editscene = load("res://Scenes/gameeditor.tscn")
-	var editgame = editscene.instantiate()
+	var editscene : PackedScene = load("res://Scenes/gameeditor.tscn")
+	var editgame : Node = editscene.instantiate()
 	add_child(editgame)
 
 func gamequit():
@@ -54,7 +45,7 @@ func gamequit():
 
 
 func _on_loadandplay_pressed() -> void:
-	var selectfile = gameselectscene.instantiate()
+	var selectfile : Node = gameselectscene.instantiate()
 	add_child(selectfile)
 	selectfile.selected.connect(startgame)
 

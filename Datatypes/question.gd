@@ -16,39 +16,46 @@ enum Difficulties {Easy, Medium, Hard, Elite, Master}
 ##4 answers that is incorrect
 @export var decoyanswers : Array[Answer] = [Answer.new(),Answer.new(),Answer.new(),Answer.new()]
 
+##difficulty of the question
 @export var difficulty : Difficulties = self.Difficulties.Easy
 
 #which question this is in the list of questions
-var thisquestion : int = -1
+var questionindex : int = -1
+
 
 func getreavealimage() -> Texture2D:
-	
+	##retrieves reveal image if there is one
 	if(self.revealimage != null):
 		return self.revealimage
 	else:
 		return self.primaryimage
 	
-	
+
+##converts the difficulty of the question as a string
 func getdiffasString() -> String:
 	return Difficulties.keys()[self.difficulty]
 
+##for when setting up questions, getting all the questions from 0 -> 4
 func getquestion(index : int) -> String:
 	
 	## returns correct answer or decoy answers
 	if(index == 0):
+		##returning correct question
 		return self.correctanswer.primaryanswer
 	else:
+		##return a decoy answer
 		return self.decoyanswers[index - 1].primaryanswer
 	
 
 func getrevealanswer(index : int) -> String:
-	
+	##gets the reveal answers for a specific question
 	if(index == 0):
 		return self.correctanswer.getreveal()
 	else:
 		return self.decoyanswers[index - 1].getreveal()
 	
 
+##converts itself to a dictionary for saving
 func saveself() -> Dictionary:
 	var savedict : Dictionary = {
 		"mainquestion" : self.question,
@@ -65,11 +72,11 @@ func saveself() -> Dictionary:
 		"difficulty" : self.difficulty,
 	}
 	
-	
 	return savedict
 
+
+##sets up a question based on data from dictionary
 func loadquestion(dict : Dictionary):
-	
 	
 	self.question = dict.get("mainquestion", "")
 	self.correctanswer.primaryanswer = dict.get("primarycorrect", "")

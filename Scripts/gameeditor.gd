@@ -1,8 +1,14 @@
 extends Control
 
-
+## the game that we will edit
 var game : Game = Game.new()
+
+## the current question that is being edited and displayed in the UI
 var currentquestion : Question
+
+
+##UI elements
+#region
 @onready var primaryimage: TextureRect = $VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/TextureRect
 @onready var revealimage: TextureRect = $VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/TextureRect
 
@@ -25,13 +31,15 @@ var currentquestion : Question
 @onready var decoy4answer: TextEdit = $VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer5/HBoxContainer/TextEdit
 @onready var decoy4reveal: TextEdit = $VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer5/HBoxContainer/TextEdit2
 
-@onready var file_dialog: FileDialog = $FileDialog
-var selectedfile : String = ""
-var addtoprimary : bool = true
+#endregion
 
-func _ready() -> void:
-	##for DEBUG
-	setupui(self.game)
+##file dialog for selecting images
+@onready var file_dialog: FileDialog = $FileDialog
+##the path of the selected file
+var selectedfile : String = ""
+
+##check if we are adding primary image or not
+var addtoprimary : bool = true
 
 
 func questionedited():
@@ -41,6 +49,7 @@ func questionedited():
 
 func setupui(newgame : Game):
 	
+	##set the game that we are editing
 	self.game = newgame
 	
 	##setup questionlist and select first question here
@@ -50,12 +59,16 @@ func setupui(newgame : Game):
 
 func loadfile(filepath):
 	
+	##load existing game to edit from given filepath
 	self.game.loadfrompath(filepath)
 	
+	##set up the questions and select the first question
 	updatequestionlist()
 	loadquestion(0)
 	questionlist.select(0, true)
+	##add folder name to text to avoid saving duplicates
 	var foldername : String = filepath
+	##remove path from folder name
 	foldername = foldername.erase(0, 19)
 	$VBoxContainer/HBoxContainer/VBoxContainer/TextEdit.text = foldername
 	
@@ -63,12 +76,18 @@ func loadfile(filepath):
 
 
 func loadquestion(index : int):
-	
+	##load a question
+	##check if the question actually exists
 	if(self.game.questions.size() > 0 and self.game.questions[index] != null):
+		
+		##change the current edited question to the new question
 		self.currentquestion = self.game.questions[index]
 		
-		self.currentquestion.thisquestion = index
+		##change the tracking variable to the current index
+		self.currentquestion.questionindex = index
 		
+		##seting up UI elements to loaded information
+		#region
 		primaryimage.texture = currentquestion.primaryimage
 		revealimage.texture = currentquestion.revealimage
 		
@@ -86,13 +105,17 @@ func loadquestion(index : int):
 		decoy3reveal.text = currentquestion.decoyanswers[2].revealanswer
 		decoy4answer.text = currentquestion.decoyanswers[3].primaryanswer
 		decoy4reveal.text = currentquestion.decoyanswers[3].revealanswer
-		
+		#endregion
 	
 
 func savecurrentquestion():
 	
+	##make sure we are not trying to save a null question
 	if(self.currentquestion != null):
 		
+		
+		##saving information from UI elements to question data
+		#region
 		currentquestion.primaryimage = primaryimage.texture
 		currentquestion.revealimage = revealimage.texture
 		
@@ -110,19 +133,21 @@ func savecurrentquestion():
 		currentquestion.decoyanswers[2].revealanswer = decoy3reveal.text
 		currentquestion.decoyanswers[3].primaryanswer = decoy4answer.text 
 		currentquestion.decoyanswers[3].revealanswer = decoy4reveal.text
-	
+		#endregion
 
 
 func _on_questionlistitem_selected(index: int) -> void:
-	##if previous question is not null, save it
+	##a new question has been selected so first we save the previous question
 	savecurrentquestion()
 	
-	##check if is last item
+	##check if it is last item
 	if(index == questionlist.item_count-1):
-		##new item pressed
+		##it is the last item which is "New Question" so we are adding a new question
+		
+		## make new question
 		self.currentquestion = Question.new()
-		self.currentquestion.thisquestion = index
-		##it is last item, add a new question and load it
+		##tell new question what position it has in the question array
+		self.currentquestion.questionindex = index
 		self.game.questions.append(self.currentquestion)
 		updatequestionlist()
 		loadquestion(index)
@@ -177,8 +202,6 @@ func _on_exit_pressed() -> void:
 
 
 func _on_file_dialog_confirmed() -> void:
-	
-	#self.selectedfile = ProjectSettings.globalize_path(self.selectedfile)
 	
 	var image = Image.new()
 	image.load(self.selectedfile)
