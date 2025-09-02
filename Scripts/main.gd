@@ -14,7 +14,16 @@ func gamefinished():
 
 func _ready() -> void:
 	question_scene.quit.connect(gamequit)
-
+	
+	
+	var dir = DirAccess.open("user://")
+	if(not dir.dir_exists("Images")):
+		dir.make_dir("Images")
+	
+	
+	
+	
+	
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()
