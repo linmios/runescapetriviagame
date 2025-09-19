@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjbt4agmhoeel"]
+[gd_scene load_steps=3 format=3 uid="uid://bjbt4agmhoeel"]
 
 [ext_resource type="Script" uid="uid://d30v2roglpyx0" path="res://Scripts/gameeditor.gd" id="1_pjdm3"]
+
+[sub_resource type="Theme" id="Theme_4qmyn"]
+default_font_size = 25
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -46,6 +49,22 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 35
 item_count = 1
 item_0/text = "(+) Add New Question"
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Time Limit"
+horizontal_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 55.63)
+layout_mode = 2
+theme = SubResource("Theme_4qmyn")
+max_value = 600.0
+alignment = 1
+update_on_text_changed = true
+suffix = "Seconds"
+custom_arrow_step = 1.0
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -138,6 +157,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 25
 placeholder_text = "Add Question Here"
+wrap_mode = 1
 
 [node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
 layout_mode = 2

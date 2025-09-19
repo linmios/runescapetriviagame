@@ -17,8 +17,9 @@ class_name QuestionScene
 @onready var label3: Label = $VBoxContainer/VBoxContainer/HBoxContainer2/PanelContainer4/MarginContainer/Label
 @onready var label4: Label = $VBoxContainer/VBoxContainer/HBoxContainer2/PanelContainer5/MarginContainer/Label
 
-##progressbar for the timer
-@onready var progress_bar: TextureProgressBar = $MarginContainer/ProgressBar
+@onready var countdownlabel : Label = $MarginContainer/VBoxContainer/Label2
+
+
 
 @onready var timer: Timer = $Timer
 
@@ -50,7 +51,7 @@ func setquestion(addedquestion : Question) -> void:
 func _process(_delta: float) -> void:
 	if(not timer.is_stopped()):
 		##update the timer
-		progress_bar.value = 60-timer.time_left
+		countdownlabel.text = str(timer.time_left).pad_decimals(1)
 
 
 ##sets up a new question
@@ -146,6 +147,16 @@ func setupquestion():
 	
 	expandtext(self.questionlabel)
 	
+	##setup timer UI
+	if(game.timelimit > 0):
+		self.countdownlabel.text = str(self.game.timelimit)
+		##hide the countdown countainer
+		$MarginContainer/VBoxContainer.visible = true
+	else:
+		##display the counter hide
+		$MarginContainer/VBoxContainer.visible = false
+	
+	
 	##reset color back to white
 	for x in self.labels:
 		x.self_modulate = Color.WHITE
@@ -178,8 +189,10 @@ func setupanswers():
 		labels[x].text = getoptionfromnumber(x) + self.question.getquestion(order[x])
 		expandtext(labels[x])
 	
-	##start the timer
-	timer.start(60.0)
+	if(game.timelimit > 0):
+		##start the timer
+		timer.start(60.0)
+
 
 func getoptionfromnumber(num : int) -> String:
 	
@@ -209,6 +222,8 @@ func showcorrect():
 			self.correctanswer = x
 		labels[x].text = getoptionfromnumber(x) + self.question.getrevealanswer(self.currentorder[x])
 		expandtext(labels[x])
+	
+	self.timer.stop()
 	
 
 func resetallinfo():

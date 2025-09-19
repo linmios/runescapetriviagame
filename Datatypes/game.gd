@@ -5,6 +5,8 @@ class_name Game
 ##which question the game is currently on, -1 being no question yet, on start it will +1 to 0, the first question
 @export var currentquestion : int = -1
 
+@export var timelimit : float = 0.0
+
 ##is emited when the last question has been displayed
 signal finished
 
@@ -50,6 +52,10 @@ func savegame(filepath : String):
 	
 	##saving the data from the array into a GameData.bin
 	var jstr
+	
+	jstr = JSON.stringify(self.timelimit)
+	file.store_line(jstr)
+	
 	for x in dataarray:
 		jstr = JSON.stringify(x)
 		file.store_line(jstr)
@@ -95,6 +101,10 @@ func loadfrompath(loadpath : String):
 	var gamedata : Array[Dictionary]
 	
 	if(FileAccess.file_exists(loadpath + "/GameData.bin")):
+		
+		##first read timelimit
+		self.timelimit = JSON.parse_string(file.get_line())
+		
 		##while there is still data in the file we add it to the list
 		while file.get_position() < file.get_length():
 			var dict = JSON.parse_string(file.get_line())

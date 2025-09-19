@@ -52,6 +52,7 @@ func setupui(newgame : Game):
 	##set the game that we are editing
 	self.game = newgame
 	
+	
 	##setup questionlist and select first question here
 	updatequestionlist()
 	questionlist.item_selected.emit(0)
@@ -121,6 +122,7 @@ func savecurrentquestion():
 		
 		currentquestion.question = mainquestionedit.text
 		
+		@warning_ignore("int_as_enum_without_cast")
 		self.currentquestion.difficulty = difficultyselect.get_selected_id()
 		
 		currentquestion.correctanswer.primaryanswer = correctanswer.text
@@ -160,6 +162,9 @@ func updatequestionlist():
 	
 	questionlist.clear()
 	
+	if(self.game.questions.size() < 1):
+		self.game.questions.append(Question.new())
+	
 	for x in self.game.questions.size():
 		questionlist.add_item("Question : " + str(x))
 	
@@ -185,6 +190,9 @@ func _on_save_pressed() -> void:
 	var foldername : String = $VBoxContainer/HBoxContainer/VBoxContainer/TextEdit.text
 	if(foldername != ""):
 		savebutton.add_theme_color_override("font_color", Color.WHITE)
+		
+		##save time limit value
+		self.game.timelimit = $VBoxContainer/HBoxContainer/VBoxContainer/SpinBox.value
 		
 		savecurrentquestion()
 		
