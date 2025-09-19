@@ -71,6 +71,9 @@ func loadfile(filepath):
 	var foldername : String = filepath
 	##remove path from folder name
 	foldername = foldername.erase(0, 19)
+	##set timer spinbox value to existing
+	
+	$VBoxContainer/HBoxContainer/VBoxContainer/SpinBox.value = self.game.timelimit
 	$VBoxContainer/HBoxContainer/VBoxContainer/TextEdit.text = foldername
 	
 
