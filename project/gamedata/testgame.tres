@@ -1,0 +1,139 @@
+[gd_resource type="Resource" script_class="Game" load_steps=22 format=3 uid="uid://dqk358e1rgil"]
+
+[ext_resource type="Script" uid="uid://dlso2duc5elhy" path="res://Datatypes/question.gd" id="1_jemgr"]
+[ext_resource type="Script" uid="uid://ch78n4rdxnxay" path="res://Datatypes/Answer.gd" id="2_heq1x"]
+[ext_resource type="Script" uid="uid://bs81n0hot0xr5" path="res://Datatypes/game.gd" id="2_palh7"]
+
+[sub_resource type="Resource" id="Resource_bvnma"]
+script = ExtResource("2_heq1x")
+primaryanswer = "Correct"
+revealanswer = "Correct (Level 1000)"
+metadata/_custom_type_script = "uid://ch78n4rdxnxay"
+
+[sub_resource type="Resource" id="Resource_qmc8p"]
+script = ExtResource("2_heq1x")
+primaryanswer = "Wrong"
+revealanswer = "Wrong (200)"
+metadata/_custom_type_script = "uid://ch78n4rdxnxay"
+
+[sub_resource type="Resource" id="Resource_luvft"]
+script = ExtResource("2_heq1x")
+primaryanswer = "Wrong"
+revealanswer = "Wrong (200)"
+metadata/_custom_type_script = "uid://ch78n4rdxnxay"
+
+[sub_resource type="Resource" id="Resource_heq1x"]
+script = ExtResource("2_heq1x")
+primaryanswer = "Wrong"
+revealanswer = "Wrong (200)"
+metadata/_custom_type_script = "uid://ch78n4rdxnxay"
+
+[sub_resource type="Resource" id="Resource_fwe6t"]
+script = ExtResource("2_heq1x")
+primaryanswer = "Wrong"
+revealanswer = "Wrong (200)"
+metadata/_custom_type_script = "uid://ch78n4rdxnxay"
+
+[sub_resource type="Resource" id="Resource_palh7"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+correctanswer = SubResource("Resource_bvnma")
+decoyanswers = Array[Object]([SubResource("Resource_qmc8p"), SubResource("Resource_luvft"), SubResource("Resource_heq1x"), SubResource("Resource_fwe6t")])
+difficulty = 0
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_w57e4"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+correctanswer = SubResource("Resource_bvnma")
+decoyanswers = Array[Object]([SubResource("Resource_qmc8p"), SubResource("Resource_luvft"), SubResource("Resource_heq1x"), SubResource("Resource_fwe6t")])
+difficulty = 0
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_56wsr"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+correctanswer = SubResource("Resource_bvnma")
+decoyanswers = Array[Object]([SubResource("Resource_qmc8p"), SubResource("Resource_luvft"), SubResource("Resource_heq1x"), SubResource("Resource_fwe6t")])
+difficulty = 0
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_8fh2w"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+correctanswer = SubResource("Resource_bvnma")
+decoyanswers = Array[Object]([SubResource("Resource_qmc8p"), SubResource("Resource_luvft"), SubResource("Resource_heq1x"), SubResource("Resource_fwe6t")])
+difficulty = 0
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_wor5r"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+correctanswer = SubResource("Resource_bvnma")
+decoyanswers = Array[Object]([SubResource("Resource_qmc8p"), SubResource("Resource_luvft"), SubResource("Resource_heq1x"), SubResource("Resource_fwe6t")])
+difficulty = 0
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_f652r"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+correctanswer = SubResource("Resource_bvnma")
+decoyanswers = Array[Object]([SubResource("Resource_qmc8p"), SubResource("Resource_luvft"), SubResource("Resource_heq1x"), SubResource("Resource_fwe6t")])
+difficulty = 0
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_c3k84"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+correctanswer = SubResource("Resource_bvnma")
+decoyanswers = Array[Object]([SubResource("Resource_qmc8p"), SubResource("Resource_luvft"), SubResource("Resource_heq1x"), SubResource("Resource_fwe6t")])
+difficulty = 0
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_g3hdh"]
+script = ExtResource("2_heq1x")
+primaryanswer = ""
+revealanswer = "Wrong (200)"
+metadata/_custom_type_script = "uid://ch78n4rdxnxay"
+
+[sub_resource type="Resource" id="Resource_vp2j1"]
+script = ExtResource("2_heq1x")
+primaryanswer = ""
+revealanswer = "Wrong (200)"
+metadata/_custom_type_script = "uid://ch78n4rdxnxay"
+
+[sub_resource type="Resource" id="Resource_f5sgt"]
+script = ExtResource("2_heq1x")
+primaryanswer = ""
+revealanswer = "Wrong (200)"
+metadata/_custom_type_script = "uid://ch78n4rdxnxay"
+
+[sub_resource type="Resource" id="Resource_khn0x"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+correctanswer = SubResource("Resource_bvnma")
+decoyanswers = Array[Object]([SubResource("Resource_qmc8p"), SubResource("Resource_g3hdh"), SubResource("Resource_vp2j1"), SubResource("Resource_f5sgt")])
+difficulty = 0
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_ab2is"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+correctanswer = SubResource("Resource_bvnma")
+decoyanswers = Array[Object]([SubResource("Resource_qmc8p"), SubResource("Resource_luvft"), SubResource("Resource_heq1x"), SubResource("Resource_fwe6t")])
+difficulty = 0
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[sub_resource type="Resource" id="Resource_nl6dp"]
+script = ExtResource("1_jemgr")
+question = "Which answer is Correct?"
+correctanswer = SubResource("Resource_bvnma")
+decoyanswers = Array[Object]([SubResource("Resource_qmc8p"), SubResource("Resource_luvft"), SubResource("Resource_heq1x"), SubResource("Resource_fwe6t")])
+difficulty = 0
+metadata/_custom_type_script = "uid://dlso2duc5elhy"
+
+[resource]
+script = ExtResource("2_palh7")
+questions = Array[ExtResource("1_jemgr")]([SubResource("Resource_palh7"), SubResource("Resource_w57e4"), SubResource("Resource_56wsr"), SubResource("Resource_8fh2w"), SubResource("Resource_wor5r"), SubResource("Resource_f652r"), SubResource("Resource_c3k84"), SubResource("Resource_khn0x"), SubResource("Resource_ab2is"), SubResource("Resource_nl6dp")])
+currentquestion = -1
+metadata/_custom_type_script = "uid://bs81n0hot0xr5"
