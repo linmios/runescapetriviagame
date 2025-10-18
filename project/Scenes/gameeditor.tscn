@@ -69,14 +69,8 @@ custom_arrow_step = 1.0
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Enter Save Folder Name"
-
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(35, 51.475)
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-placeholder_text = "Enter folder name"
-emoji_menu_enabled = false
+text = "Select a Save Folder"
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -354,7 +348,7 @@ initial_position = 1
 size = Vector2i(800, 640)
 ok_button_text = "Open"
 file_mode = 0
-access = 1
+access = 2
 
 [connection signal="item_selected" from="VBoxContainer/HBoxContainer/VBoxContainer/ItemList" to="." method="_on_questionlistitem_selected"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_exit_pressed"]
@@ -373,4 +367,5 @@ access = 1
 [connection signal="text_changed" from="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer5/HBoxContainer/TextEdit" to="." method="questionedited"]
 [connection signal="text_changed" from="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/VBoxContainer5/HBoxContainer/TextEdit2" to="." method="questionedited"]
 [connection signal="confirmed" from="FileDialog" to="." method="_on_file_dialog_confirmed"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

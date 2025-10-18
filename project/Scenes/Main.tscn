@@ -131,7 +131,19 @@ text = "Quit"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="FileDialog" type="FileDialog" parent="."]
+oversampling_override = 1.0
+title = "Open a Directory"
+initial_position = 1
+size = Vector2i(840, 640)
+ok_button_text = "Select"
+file_mode = 2
+access = 2
+
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_loadandplay_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_makenew_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_loadandedit_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button4" to="." method="_on_exit_pressed"]
+[connection signal="confirmed" from="FileDialog" to="." method="_on_file_dialog_confirmed"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_gamefile_selected"]

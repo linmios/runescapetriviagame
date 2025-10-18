@@ -13,6 +13,8 @@ signal finished
 func nextquestion():
 	##skips to the next question
 	self.currentquestion += 1
+	if(self.currentquestion > self.questions.size()):
+		self.currentquestion = 0
 
 
 func getquestion() -> Question:
@@ -38,17 +40,17 @@ func savegame(filepath : String):
 		dataarray.append(x.saveself())
 	
 	##the complete savepath
-	var savepath : String =  "user://Triviagames/" + filepath + "/"
+	var savepath : String =  filepath
 	var folderpath : String = savepath
 	
 	##open the file
-	var file : FileAccess = FileAccess.open(savepath+"GameData.bin", FileAccess.WRITE)
+	var file : FileAccess = FileAccess.open(savepath+"/GameData.bin", FileAccess.WRITE)
 	
 	##if the folder doesnt exist we create it
 	if(file == null):
 		DirAccess.make_dir_absolute(savepath)
 		##open the newly created file
-		file = FileAccess.open(savepath+"GameData.bin", FileAccess.WRITE)
+		file = FileAccess.open(savepath+"/GameData.bin", FileAccess.WRITE)
 	
 	##saving the data from the array into a GameData.bin
 	var jstr

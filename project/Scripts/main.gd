@@ -2,10 +2,15 @@ extends Control
 
 
 @onready var question_scene: QuestionScene = $Control 
-@onready var gameselectscene  : PackedScene = load("res://Scenes/fileselect.tscn")
+@onready var gamefileselect: FileDialog = $FileDialog
 
 @onready var menubuttons: VBoxContainer = $VBoxContainer
-	
+
+enum loadfiletype {Play, Load}
+
+var loadfileaction : loadfiletype = loadfiletype.Play
+
+var temppathholder : String = ""
 
 func _ready() -> void:
 	##connect question scene quit signal to return to menu
@@ -25,9 +30,9 @@ func _on_exit_pressed() -> void:
 
 func _on_loadandedit_pressed() -> void:
 	##loads scene to edit games, loads existing file
-	var selectfile : Node = gameselectscene.instantiate()
-	add_child(selectfile)
-	selectfile.selected.connect(setupeditor)
+	gamefileselect.invalidate()
+	loadfileaction = loadfiletype.Load
+	gamefileselect.visible = true
 
 func setupeditor(filepath : String):
 	##sets up the editor based on file path
@@ -51,9 +56,9 @@ func gamequit():
 
 
 func _on_loadandplay_pressed() -> void:
-	var selectfile : Node = gameselectscene.instantiate()
-	add_child(selectfile)
-	selectfile.selected.connect(startgame)
+	gamefileselect.invalidate()
+	loadfileaction = loadfiletype.Play
+	gamefileselect.visible = true
 
 
 func startgame(filepath : String):
@@ -64,3 +69,16 @@ func startgame(filepath : String):
 	question_scene.visible = true
 	question_scene.setgame(game)
 	print("Start game at : " + filepath)
+
+
+func _on_file_dialog_confirmed() -> void:
+	if(temppathholder != ""):
+		match loadfileaction:
+			loadfiletype.Play:
+				startgame(temppathholder)
+			loadfiletype.Load:
+				setupeditor(temppathholder)
+
+
+func _on_file_dialog_dir_selected(dir: String) -> void:
+	temppathholder = dir

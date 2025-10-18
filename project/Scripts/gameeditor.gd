@@ -6,6 +6,7 @@ var game : Game = Game.new()
 ## the current question that is being edited and displayed in the UI
 var currentquestion : Question
 
+var folderselected : bool = false
 
 ##UI elements
 #region
@@ -38,8 +39,13 @@ var currentquestion : Question
 ##the path of the selected file
 var selectedfile : String = ""
 
-##check if we are adding primary image or not
-var addtoprimary : bool = true
+##save folder file path
+var filepathsave : String = ""
+
+enum fileselectaction {Savefile, PrimaryImage, SecondaryImage}
+
+var savefileaction : fileselectaction = fileselectaction.Savefile
+
 
 
 func questionedited():
@@ -74,7 +80,6 @@ func loadfile(filepath):
 	##set timer spinbox value to existing
 	
 	$VBoxContainer/HBoxContainer/VBoxContainer/SpinBox.value = self.game.timelimit
-	$VBoxContainer/HBoxContainer/VBoxContainer/TextEdit.text = foldername
 	
 
 
@@ -178,20 +183,21 @@ func updatequestionlist():
 
 func _on_selectmainimage_pressed() -> void:
 	file_dialog.invalidate()
-	addtoprimary= true
+	savefileaction = fileselectaction.PrimaryImage
 	file_dialog.visible = true
+	file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 
 
 func _on_selectrevealimage_pressed() -> void:
 	file_dialog.invalidate()
-	addtoprimary = false
+	savefileaction = fileselectaction.SecondaryImage
 	file_dialog.visible = true
+	file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 
 
 func _on_save_pressed() -> void:
 	
-	var foldername : String = $VBoxContainer/HBoxContainer/VBoxContainer/TextEdit.text
-	if(foldername != ""):
+	if(folderselected):
 		savebutton.add_theme_color_override("font_color", Color.WHITE)
 		
 		##save time limit value
@@ -201,10 +207,13 @@ func _on_save_pressed() -> void:
 		
 		##get array of dictionary from game.save
 		
-		self.game.savegame(foldername)
-		$VBoxContainer/HBoxContainer/VBoxContainer/TextEdit.placeholder_text = "Enter folder name"
+		self.game.savegame(filepathsave)
 	else:
-		$VBoxContainer/HBoxContainer/VBoxContainer/TextEdit.placeholder_text = "Folder Name is Required"
+		file_dialog.invalidate()
+		savefileaction = fileselectaction.Savefile
+		file_dialog.visible = true
+		file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_DIR
+
 
 
 
@@ -214,18 +223,27 @@ func _on_exit_pressed() -> void:
 
 func _on_file_dialog_confirmed() -> void:
 	
-	var image = Image.new()
-	image.load(self.selectedfile)
-	if(image != null):
-		var texture = ImageTexture.new()
-		#texture.create_from_image(image)
-		texture.set_image(image)
+	if(savefileaction != fileselectaction.Savefile):
 		
-		if(self.addtoprimary):
-			self.primaryimage.texture = texture
-		else:
-			self.revealimage.texture = texture
-
+		var image = Image.new()
+		image.load(self.selectedfile)
+		if(image != null):
+			var texture = ImageTexture.new()
+			#texture.create_from_image(image)
+			texture.set_image(image)
+			
+			if(self.addtoprimary):
+				self.primaryimage.texture = texture
+			else:
+				self.revealimage.texture = texture
+	else:
+		folderselected = true
+		_on_save_pressed()
 
 func _on_file_dialog_file_selected(path: String) -> void:
 	self.selectedfile = path
+
+
+func _on_file_dialog_dir_selected(dir: String) -> void:
+	if(savefileaction == fileselectaction.Savefile):
+		filepathsave = dir
