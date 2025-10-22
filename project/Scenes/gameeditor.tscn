@@ -106,7 +106,7 @@ theme_override_font_sizes/font_size = 25
 text = "Primary Image"
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(400, 400)
+custom_minimum_size = Vector2(400, 350)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
@@ -125,7 +125,7 @@ theme_override_font_sizes/font_size = 25
 text = "Reveal Image (Optional)"
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(400, 400)
+custom_minimum_size = Vector2(400, 350)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
@@ -146,7 +146,7 @@ theme_override_font_sizes/font_size = 40
 text = "Question"
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
-custom_minimum_size = Vector2(120, 180)
+custom_minimum_size = Vector2(120, 160.385)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 25
